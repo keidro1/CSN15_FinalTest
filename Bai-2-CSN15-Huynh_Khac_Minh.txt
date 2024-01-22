@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int X(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    } else {
+        return n * X(n - 1);
+    }
+}
+
+int demCach(int DoiM, int DoiT) {
+    
+    int Y = X(DoiM + DoiT) / (X(DoiM) * X(DoiT));
+    return Y;
+}
+
+int main() {
+    int soTest;
+    cin >> soTest;
+
+    while (soTest--) {
+        int soBanDoiM, soBanDoiT;
+        cin >> soBanDoiM >> soBanDoiT;
+        cout << demCach(soBanDoiM, soBanDoiT) << endl;
+    }
+
+    return 0;
+}

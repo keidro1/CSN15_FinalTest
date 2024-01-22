@@ -1,0 +1,35 @@
+SQL
+1/ SELECT * FROM employees;
+
+2/ SELECT first_name, salary FROM employees;
+
+3/ SELECT *
+FROM employees
+WHERE salary > 5000;
+
+4/ SELECT *
+FROM employees
+WHERE first_name LIKE 'A%';
+
+5/ SELECT employees.first_name, employees.last_name, departments.name
+FROM employees
+INNER JOIN departments
+ON employees.department_id = departments.id;
+
+6/ SELECT departments.name, COUNT(*) AS number_of_employees
+FROM employees
+GROUP BY departments.id;
+
+7/ SELECT departments.name
+FROM employees
+GROUP BY departments.id
+HAVING COUNT(*) > 10;
+
+8/ INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+VALUES ('1', 'Minh', 'H', 'minh@example.com', '12345678', '01/01/2024', 'IT_PROG', 100, 1, 1, 1);
+
+9/ UPDATE employees
+SET salary = salary * 1.1;
+
+10/ DELETE FROM employees
+WHERE employee_id = 10;

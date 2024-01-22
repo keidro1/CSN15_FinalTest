@@ -1,0 +1,40 @@
+#include <iostream>
+
+using namespace std;
+
+// Độ giảm sức mạnh của con quái vật theo time
+int getStrengthDecrease(int i, int k) {
+  return i * k;
+}
+
+// Min Gold để đánh quái vật
+int goldNeeded(int m, int d, int k, int c) {
+  int r = d;
+  int g = 0;
+  for (int i = 0; i < m; ++i) {
+    if (d <= 0)
+      return -1;
+   
+    int dk = getStrengthDecrease(i, k);
+    d -= dk;
+    if (d - dk <= 0) {
+      int rm = m - i - 1;
+      g += c * (m - i - 1);
+    }
+    d = r;
+  }
+  return g;
+}
+
+// Hàm chính
+int main() {
+  int m, d, k, c;
+  cin >> m >> d >> k >> c;
+  // Gọi goldNeeded để tính toán lượng gold min cần thiết
+  int gold = goldNeeded(m, d, k, c);
+  if (gold == -1)
+    cout << "Mark không thể qua được map này" << endl;
+  else
+    cout << "Mark cần chuẩn bị tối thiểu " << gold << " gold để an toàn qua màn" << endl;
+  return 0;
+}

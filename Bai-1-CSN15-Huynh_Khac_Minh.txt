@@ -1,0 +1,47 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+bool SoSanh(const string& dauNgoac) {
+    stack<char> stack;
+
+    for (char ngoac : dauNgoac) {
+        if (ngoac == '{' || ngoac == '[' || ngoac == '(') {
+            stack.push(ngoac);
+        } else {
+            if (stack.empty()) {
+                return false; 
+            }
+
+            char moNgoac = stack.top();
+            stack.pop();
+
+            if ((moNgoac == '{' && ngoac != '}') ||
+                (moNgoac == '[' && ngoac != ']') ||
+                (moNgoac == '(' && ngoac != ')')) {
+                return false; 
+            }
+        }
+    }
+
+    return stack.empty(); 
+}
+
+int main() {
+    int soTest;
+    cin >> soTest;
+
+    for (int i = 0; i < soTest; ++i) {
+        string dauNgoac;
+        getline(cin, dauNgoac);
+
+        bool kq = SoSanh(dauNgoac);
+        cout << (kq ? "true" : "false") << endl;
+    }
+
+    return 0;
+}
+
+// Ý tưởng là sử dụng ngăn xếp (stack) để so sánh căn bằng của input dấu ngoặc -> đẩy vô stack khi gặp dấu đóng ngoặc, ta kiểm tra xem dấu mở ngoặc tương ứng có ở trên stack hay ko -> Nếu có loại bỏ cả hai, ngược lại nếu không, chuỗi không cân bằng.
